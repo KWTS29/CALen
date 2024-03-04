@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable</title>
+    <style>
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Timetable</h2>
+
+<p>Enter the day (from A to F): <input type="text" id="dayInput"></p>
+<button onclick="displayTimetable()">Show Timetable</button>
+
+<ul id="timetable">
+</ul>
+
+<script>
+    function displayTimetable() {
+        var day = document.getElementById("dayInput").value.toUpperCase();
+        var timetableData = getTimetable(day);
+        var list = document.getElementById("timetable");
+
+        // Clear previous list data
+        list.innerHTML = "";
+
+        // Populate list with timetable data
+        for (var i = 0; i < timetableData.length; i++) {
+            var listItem = document.createElement("li");
+            listItem.textContent = "Time: " + getTimeStamp(i) + " - Subject: " + timetableData[i];
+            list.appendChild(listItem);
+        }
+    }
+
+    function getTimetable(day) {
+        switch (day) {
+            case "A":
+                return ["Web Design", "Arabic", "Chemistry", "English", "Math", "Biology", "Islamic"];
+            case "B":
+                return ["French", "English", "Chemistry", "Arabic", "Art", "Biology", "Math"];
+            case "C":
+                return ["Math", "English", "Chemistry", "Islamic", "Arabic", "Biology", "French"];
+            case "D":
+                return ["Chemistry", "Arabic", "Math", "Biology", "Web Design", "English", "French"];
+            case "E":
+                return ["English", "Chemistry", "Biology", "Art", "Arabic", "Math", "Web Design"];
+            case "F":
+                return ["Art", "Biology", "Islamic", "English", "Math", "Arabic", "Chemistry"];
+            default:
+                return ["Invalid day"];
+        }
+    }
+
+    function getTimeStamp(periodIndex) {
+        switch (periodIndex) {
+            case 0:
+                return "7:35 - 8:30";
+            case 1:
+                return "8:35 - 9:25";
+            case 2:
+                return "9:30 - 10:20";
+            case 3:
+                return "10:25 - 11:15";
+            case 4:
+                return "11:40 - 12:30";
+            case 5:
+                return "12:35 - 13:25";
+            case 6:
+                return "13:45 - 14:30";
+            default:
+                return "Unknown";
+        }
+    }
+</script>
+
+</body>
+</html>
